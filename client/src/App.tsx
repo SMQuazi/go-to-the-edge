@@ -7,7 +7,6 @@ import { Box } from "@mui/system";
 function App() {
   const [text, setText] = useState(null)
   const [File, setFile] = useState(null)
-  const inputRef = useRef()
 
   const getText = async () => {
     if (!text) {
@@ -29,7 +28,6 @@ function App() {
     formData.append("File", File)
     const resp = await axios.post(`/api/upload`, formData)
     setFile(null)
-    inputRef.current.value = ""
   }
 
   const handleFile = (event) => {
