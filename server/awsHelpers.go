@@ -21,12 +21,18 @@ func GetConfig() aws.Config {
 	return cfg
 }
 
-func toS3(svc *s3.Client, body io.Reader, filepath string) (*s3.PutObjectOutput, error) {
-	return svc.PutObject(context.TODO(), &s3.PutObjectInput{
+func ToS3(svc *s3.Client, body io.Reader, filepath string) (string, error) {
+	_, err := svc.PutObject(context.TODO(), &s3.PutObjectInput{
 		Bucket: aws.String("likwid-webapps"),
 		Body:   body,
 		Key:    aws.String(fmt.Sprintf("personal-site/%s", filepath)),
 	})
+
+	if err != nil {
+		return "", fmt.Errorf("error uploading to s3: %s", err)
+	}
+
+	return fmt.Sprintf("S3://likwid-webapps/personal-site/%s", filepath), nil
 }
 
 func ListBuckets(svc *s3.Client) {

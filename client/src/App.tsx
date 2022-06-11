@@ -46,7 +46,7 @@ function App() {
         <Grid item xs={6} md={4}>
           <form onSubmit={handleSubmit} id="form1" encType="multipart/form-data">
             <input type="text" />
-            <input type="file" onChange={handleFile} ref={inputRef} accept=".jpg,.png,.tif,.tiff" />
+            <input type="file" onChange={handleFile} accept=".jpg,.png,.tif,.tiff" />
             <button form="form1" value="Submit">Submit</button>
           </form>
         </Grid>

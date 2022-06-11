@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/gofiber/fiber/v2"
@@ -29,20 +28,13 @@ func main() {
 		file, err := c.FormFile("File")
 		errCheck(err)
 
-		localFilePath := fmt.Sprintf("./uploads/%s", file.Filename)
-		fmt.Println(localFilePath)
-
-		err = c.SaveFile(file, localFilePath)
-		errCheck(err)
-
-		osFile, err := os.Open(localFilePath)
+		test, err := file.Open()
 		errCheck(err)
 
 		s3Service := s3.NewFromConfig(GetConfig())
-		output, err := toS3(s3Service, osFile, file.Filename)
-		errCheck(err)
+		output, _ := ToS3(s3Service, test, file.Filename)
 
-		fmt.Println(output.ResultMetadata)
+		fmt.Println(output)
 
 		return c.SendStatus(200)
 	})
