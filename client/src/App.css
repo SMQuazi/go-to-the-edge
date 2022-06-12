@@ -1,0 +1,12 @@
+body{
+background-color: #ddd;
+}
+
+.main {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.file-name {
+  font-size: small;
+}

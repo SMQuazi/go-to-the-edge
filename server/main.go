@@ -21,7 +21,7 @@ func main() {
 	})
 
 	app.Get("/api", func(c *fiber.Ctx) error {
-		return c.SendString("Hello from the API!")
+		return c.SendString("Hello from the API.")
 	})
 
 	app.Post("/api/upload", func(c *fiber.Ctx) error {
