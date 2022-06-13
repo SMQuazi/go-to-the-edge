@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
-import { Autocomplete, Button, Card, Grid, TextField, Typography } from "@mui/material";
+import { useEffect, useState, } from "react";
+import { Button, Card, Grid, TextField, } from "@mui/material";
 import "./App.css"
 
 function App() {
