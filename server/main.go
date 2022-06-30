@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/gofiber/fiber/v2"
@@ -39,5 +40,5 @@ func main() {
 		return c.SendStatus(200)
 	})
 
-	app.Listen(":5000")
+	http.ListenAndServe(":5000", http.FileServer(http.Dir("../client/dist")))
 }

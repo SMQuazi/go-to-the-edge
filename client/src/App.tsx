@@ -1,77 +1,35 @@
 import axios from "axios";
 import { useEffect, useState, } from "react";
-import { Button, Card, Grid, TextField, } from "@mui/material";
+import { Button, Card, Grid, TextField } from "@mui/material";
 import "./App.css"
 
 function App() {
-  const [text, setText] = useState("Connecting to API...")
-  const [File, setFile] = useState(null)
-
-
   useEffect(() => {
     const getText = async () => {
       const { data } = await axios.get(`/api`)
       if (!data) {
-        setText("Cannot connect to API!")
+        console.log("Can't connect to API.")
       }
-      setText(data)
+      console.log("Connected to API...")
     }
     getText()
   }, [])
 
-
-  const handleSubmit = async (event) => {
-    console.log("submit")
-    event.preventDefault()
-    const formData = new FormData()
-    formData.append("File", File)
-    await axios.post(`/api/upload`, formData)
-    setFile(File)
-  }
-
-  const handleFile = (event) => {
-    setFile(event.target.files[0])
-  }
-
   return (
     <Card className="main">
-      <Grid
-        container
-        spacing={1}
-      >
-        <Grid item xs={6} md={6}>
-          {text}
+      <Grid container spacing={5}>
+        <Grid item xs={6}>
+          Log in to get started.
         </Grid>
-        <Grid item xs={6} md={6}>
-          <form onSubmit={handleSubmit} id="form1" encType="multipart/form-data">
-            <div>
-              <TextField variant="outlined" />
-            </div>
-            <div>
-              <input hidden type="file" id="file-picker" onChange={handleFile} accept=".jpg,.png,.tif,.tiff" disabled={Boolean(File)} />
-              <label htmlFor="file-picker">
-                <Grid container>
-                  <Grid item>
-                    <Button component="span" disabled={Boolean(File)}>
-                      Upload
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    {File &&
-                      <span className="file-name">
-                        {File?.name}
-                      </span>}
-                  </Grid>
-                </Grid>
-              </label>
-            </div>
-            <div>
-              <Button form="form1" value="Submit">Submit</Button>
-            </div>
-          </form>
+        <Grid item xs={6}>
+          <Grid container gap={1}>
+            <TextField variant="standard" placeholder="username" />
+            <TextField variant="standard" placeholder="password" type={"password"} />
+            <Button>Log in</Button>
+          </Grid>
         </Grid>
-      </Grid>
-    </Card>
+      </Grid >
+    </Card >
   );
 }
 

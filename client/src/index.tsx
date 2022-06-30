@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createTheme } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 const theme = createTheme({
   palette: {

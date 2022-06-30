@@ -23,9 +23,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "yarn clean && tsc && yarn copy-files",
+    "clean": "rm -rf ./dist",
+    "copy-files": "cp ./public/ ./dist/"
   },
   "eslintConfig": {
     "extends": [
