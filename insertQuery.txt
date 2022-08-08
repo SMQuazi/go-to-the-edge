@@ -1,0 +1,11 @@
+insert Articles {
+  title := "This is a title",
+  content := "This is some content for the articles",
+  author := (insert Authors { first_name := "John", last_name := "Doh"})
+};
+
+insert Articles {
+  title := "This is a title 2",
+  content := "This is some content for the articles 2",
+  author := (insert Authors { first_name := "Jane", last_name := "Dope"})
+};

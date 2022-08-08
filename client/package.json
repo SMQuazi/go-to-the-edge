@@ -23,11 +23,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build": "yarn clean && tsc && yarn copy-files",
-    "clean": "rm -rf ./dist",
-    "copy-files": "cp ./public/ ./dist/"
+    "server": "cd ../server/ && go run *.go",
+    "client": "yarn start",
+    "dev": "yarn server & yarn client"
   },
   "eslintConfig": {
     "extends": [
