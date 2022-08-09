@@ -27,5 +27,4 @@ This project requires the installation of:
 
 #### GoLang
 1. cd server
-2. (if air installed) air
-2. (else) go run .
+2. if air installed, `air`. Otherwise, `go run .`
