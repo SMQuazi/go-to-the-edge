@@ -26,7 +26,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "cd ../server/ && go run *.go",
     "client": "yarn start",
     "dev": "yarn server & yarn client"
   },
