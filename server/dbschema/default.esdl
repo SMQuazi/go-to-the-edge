@@ -16,4 +16,11 @@ module default {
       default := datetime_current()
     };
   }
+
+  type Users {
+    required property username -> str {
+      constraint exclusive
+    };
+    required property password -> str;
+  }
 }
