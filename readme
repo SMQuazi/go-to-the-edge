@@ -25,7 +25,7 @@ This project requires the installation of:
 2. edgedb migration start
 3. edgedb migrate
 
-####  
+#### GoLang
 1. cd server
 2. (if air installed) air
 2. (else) go run .
