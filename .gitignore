@@ -45,3 +45,4 @@ go.work
 
 */build
 tmp/build-errors.log
+server/tmp/main

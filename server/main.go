@@ -36,7 +36,7 @@ func handleApiArticles(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	mux := http.NewServeMux()
-	// http.HandleFunc("/api/upload", handleApiUpload)
+	mux.HandleFunc("/api/", handleApiRoot)
 	mux.HandleFunc("/api/articles/", handleApiArticles)
 	mux.Handle("/", http.FileServer(http.Dir("../client/build")))
 
