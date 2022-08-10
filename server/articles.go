@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/edgedb/edgedb-go"
 )
 
@@ -50,9 +49,5 @@ func getAllArticles(client *edgedb.Client) []Articles {
 	errCheck(err)
 	fmt.Println("Fetching articles successful.")
 
-	for i := 0; i < len(articles); i++ {
-		spew.Dump(articles[i])
-		fmt.Println("--")
-	}
 	return articles
 }

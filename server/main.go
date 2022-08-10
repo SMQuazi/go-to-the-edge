@@ -53,7 +53,6 @@ func handleApiLogin(w http.ResponseWriter, r *http.Request) {
 
 	if loginInfo.Username == "test" && loginInfo.Password == "test" {
 		returnUser := UserInfo{Id: 1, Username: "test", DisplayName: "Tester 1"}
-
 		b, err := json.Marshal(returnUser)
 		errCheck(err)
 		fmt.Println(b)
