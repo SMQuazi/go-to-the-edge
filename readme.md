@@ -16,14 +16,16 @@ This project requires the installation of:
 ### Setup
 
 #### Initialize EdgeDB
-1. cd db
-2. edgedb init
+1. `cd db`
+2. `edgedb init`
+3. `edgedb`
+4. copy and paste content of `insertQuery.txt`
 
 #### GoLang
-1. cd server
+1. `cd server`
 2. if air installed, `air`. Otherwise, `go run .`
 
 #### Frontend
-1. cd client
-2. yarn
-3. yarn start
+1. `cd client`
+2. `yarn`
+3. `yarn start`
