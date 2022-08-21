@@ -15,16 +15,15 @@ This project requires the installation of:
 
 ### Setup
 
-#### Frontend
-1. cd client
-2. yarn
-3. yarn start
-
-#### EdgeDB
-1. cd server
-2. edgedb migration start
-3. edgedb migrate
+#### Initialize EdgeDB
+1. cd db
+2. edgedb init
 
 #### GoLang
 1. cd server
 2. if air installed, `air`. Otherwise, `go run .`
+
+#### Frontend
+1. cd client
+2. yarn
+3. yarn start
