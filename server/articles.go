@@ -23,14 +23,6 @@ type Articles struct {
 	Publish_date time.Time `edgedb:"publish_date"`
 }
 
-func InitDb(ctx context.Context) *edgedb.Client {
-	client, err := edgedb.CreateClient(ctx, edgedb.Options{})
-	fmt.Println("Creating client")
-	errCheck(err)
-
-	return client
-}
-
 func getAllArticles(client *edgedb.Client) []Articles {
 	ctx := context.Background()
 	var articles []Articles

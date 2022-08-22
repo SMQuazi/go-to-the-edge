@@ -8,12 +8,21 @@ import (
 	"net/http"
 
 	"github.com/davecgh/go-spew/spew"
+	"github.com/edgedb/edgedb-go"
 )
 
 func errCheck(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func InitDb(ctx context.Context) *edgedb.Client {
+	client, err := edgedb.CreateClient(ctx, edgedb.Options{})
+	fmt.Println("Creating client")
+	errCheck(err)
+
+	return client
 }
 
 func handleApiRoot(w http.ResponseWriter, r *http.Request) {
@@ -51,11 +60,11 @@ func handleApiLogin(w http.ResponseWriter, r *http.Request) {
 	err := decoder.Decode(&loginInfo)
 	errCheck(err)
 
+	// TODO actual encrypted authentication
 	if loginInfo.Username == "test" && loginInfo.Password == "test" {
 		returnUser := UserInfo{Id: 1, Username: "test", DisplayName: "Tester 1"}
 		b, err := json.Marshal(returnUser)
 		errCheck(err)
-		fmt.Println(b)
 		w.Write(b)
 		return
 	}
@@ -63,9 +72,9 @@ func handleApiLogin(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/api/", handleApiRoot)
 	mux.HandleFunc("/api/login", handleApiLogin)
 	mux.HandleFunc("/api/articles/", handleApiArticles)
+	mux.HandleFunc("/api/", handleApiRoot)
 	mux.Handle("/", http.FileServer(http.Dir("../client/build")))
 
 	fmt.Println("Server started")
