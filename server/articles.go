@@ -2,9 +2,12 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"net/http"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/edgedb/edgedb-go"
 )
 
@@ -21,6 +24,20 @@ type Articles struct {
 	Content      string    `edgedb:"content"`
 	Author       Author    `edgedb:"author"`
 	Publish_date time.Time `edgedb:"publish_date"`
+}
+
+func handleApiArticles(w http.ResponseWriter, r *http.Request) {
+	ctx := context.Background()
+	db := InitDb(ctx)
+	allArticles := getAllArticles(db)
+	for i := 0; i < len(allArticles); i++ {
+		spew.Dump(allArticles[i])
+	}
+
+	b, err := json.Marshal(allArticles)
+	errCheck(err)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(b)
 }
 
 func getAllArticles(client *edgedb.Client) []Articles {

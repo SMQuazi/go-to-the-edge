@@ -2,12 +2,10 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/edgedb/edgedb-go"
 )
 
@@ -27,47 +25,6 @@ func InitDb(ctx context.Context) *edgedb.Client {
 
 func handleApiRoot(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello from the API."))
-}
-
-func handleApiArticles(w http.ResponseWriter, r *http.Request) {
-	ctx := context.Background()
-	db := InitDb(ctx)
-	allArticles := getAllArticles(db)
-	for i := 0; i < len(allArticles); i++ {
-		spew.Dump(allArticles[i])
-	}
-
-	b, err := json.Marshal(allArticles)
-	errCheck(err)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(b)
-}
-
-type LoginInfo struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
-
-type UserInfo struct {
-	Id          int    `json:"id"`
-	Username    string `json:"username"`
-	DisplayName string `json:"displayName"`
-}
-
-func handleApiLogin(w http.ResponseWriter, r *http.Request) {
-	decoder := json.NewDecoder(r.Body)
-	var loginInfo LoginInfo
-	err := decoder.Decode(&loginInfo)
-	errCheck(err)
-
-	// TODO actual encrypted authentication
-	if loginInfo.Username == "test" && loginInfo.Password == "test" {
-		returnUser := UserInfo{Id: 1, Username: "test", DisplayName: "Tester 1"}
-		b, err := json.Marshal(returnUser)
-		errCheck(err)
-		w.Write(b)
-		return
-	}
 }
 
 func main() {
